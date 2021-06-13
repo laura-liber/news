@@ -1,0 +1,22 @@
+from django.urls import path
+from .views import (
+    ArticleListView, 
+    ArticleUpdateView, 
+    ArticleDeleteView, 
+    ArticleDetailView,
+    ArticleCreateView,
+)
+
+
+# articles/ID/edit/ -> users can modify an existing article
+# articles/ID/delete/ -> users can remove an existing article
+# articles/ID/ -> users can view the detail view of an article
+
+urlpatterns = [
+    path('', ArticleListView.as_view(), name='article_list'),
+    path('<int:pk>/edit', ArticleUpdateView.as_view(), name='article_edit'),
+    path('<int:pk>/delete', ArticleDeleteView.as_view(), name='article_delete'),
+    path('<int:pk>/', ArticleDetailView.as_view(), name='article_detail'),
+    path('new/', ArticleCreateView.as_view(), name='article_new'),
+]
+

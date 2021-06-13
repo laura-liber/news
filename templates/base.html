@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">News</a>
+            <a class="navbar-brand" href="{% url 'home' %}">News</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@
                             Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Articles</a>
+                        <a class="nav-link active" href="{% url 'article_list' %}">Articles</a>
                     </li>
                     <li class="nav-item dropdown">
                         {% if user.is_authenticated %}
@@ -33,9 +33,9 @@
                             {{ user.username }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url 'article_new' %}">Create Article</a></li>
                             <li><a class="dropdown-item" href="{% url 'password_change' %}">Password Change</a></li>
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                         {% else %}
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -45,8 +45,10 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{% url 'login' %}">Log In</a></li>
                             <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></li>
-                            <li><a class="dropdown-item" href="#">Password Reset</a></li>
-                            {% endif %}
+                            <li><a class="dropdown-item" href="{% url 'password_reset' %}">
+                                Password Reset</a></li>
+                        </ul>
+                    {% endif %}
                     </li>
                 </ul>
 
